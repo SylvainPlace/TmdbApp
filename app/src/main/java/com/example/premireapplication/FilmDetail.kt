@@ -8,7 +8,6 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
@@ -23,8 +22,7 @@ fun ScreenFilmsDetail(
         viewModel.getFilmDetails(id)
         val movieDetails by viewModel.filmDetail.collectAsState()
         Column(
-            modifier = Modifier.verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         ) {
             movieDetails?.let {
                 FirstTitle(it.title)

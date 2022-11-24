@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.navigation.NavController
 
-
 @Composable
 fun ScreenProfile(windowClass: WindowSizeClass, navController: NavController) {
     when (windowClass.widthSizeClass) {

@@ -40,7 +40,6 @@ fun ScreenSeries(
                 items(series.size) { index ->
                     CardSerie(series[index], navController)
                 }
-
             }
         }
     }

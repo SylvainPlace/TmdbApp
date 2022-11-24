@@ -10,5 +10,4 @@ fun stringToDate(date: String): String {
         TextStyle.SHORT,
         Locale.getDefault()
     ) + " " + dt.year.toString()
-
 }

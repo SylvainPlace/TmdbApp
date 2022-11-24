@@ -20,10 +20,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun ResearchField(size: Int, navController: NavHostController){
+fun ResearchField(size: Int, navController: NavHostController) {
     var text by remember { mutableStateOf(TextFieldValue("")) }
     TextField(
-        modifier = Modifier.animateContentSize().width(size.dp),
+        modifier = Modifier
+            .animateContentSize()
+            .width(size.dp),
         value = text,
         onValueChange = { newText ->
             text = newText
@@ -42,7 +44,7 @@ fun ResearchField(size: Int, navController: NavHostController){
 }
 
 @Composable
-fun ResearchIcon(searchBool:Boolean){
+fun ResearchIcon(searchBool: Boolean) {
     if (searchBool) {
         Icon(
             imageVector = Icons.Filled.KeyboardArrowLeft,

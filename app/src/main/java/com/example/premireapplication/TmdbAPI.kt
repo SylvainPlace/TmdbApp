@@ -14,20 +14,42 @@ interface TmdbAPI {
     suspend fun lastseries(@Query("api_key") api_key: String): TmdbSerieResult
 
     @GET("trending/person/week")
-    suspend fun lastpeople(@Query("api_key") api_key: String, @Query("language") language: String): TmdbPersonResult
+    suspend fun lastpeople(
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
+    ): TmdbPersonResult
 
     @GET("movie/{id}")
-    suspend fun detailmovie(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): TmdbMovieDetails
+    suspend fun detailmovie(
+        @Path("id") id: Int,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String,
+        @Query("append_to_response") append_to_response: String = "credits"
+    ): TmdbMovieDetails
 
     @GET("tv/{id}")
-    suspend fun detailserie(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): SerieDetails
+    suspend fun detailserie(
+        @Path("id") id: Int,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String,
+        @Query("append_to_response") append_to_response: String = "credits"
+    ): SerieDetails
 
     @GET("person/{id}")
-    suspend fun detailperson(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): PersonDetails
+    suspend fun detailperson(
+        @Path("id") id: Int,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String,
+        @Query("append_to_response") append_to_response: String = "credits"
+    ): PersonDetails
 
 
     @GET("search/movie")
-    suspend fun searchmovie(@Query("query") query: String, @Query("api_key") api_key: String, @Query("language") language: String): TmdbMovieResult
+    suspend fun searchmovie(
+        @Query("query") query: String,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
+    ): TmdbMovieResult
 
 }
 
