@@ -64,14 +64,14 @@ fun Biography(biography: String?) {
 fun LifeDate(birthday: String?, deathday:String?) {
     Row {
         if (birthday != null) {
-            Text(text = "Né le " + StringToDate(birthday))
+            Text(text = "Né le " + stringToDate(birthday))
 
             if (deathday != null) {
                 Text(text = " et ")
             }
         }
         if (deathday != null) {
-            Text(text = "décédé le " + StringToDate(deathday))
+            Text(text = "décédé le " + stringToDate(deathday))
 
         }
     }

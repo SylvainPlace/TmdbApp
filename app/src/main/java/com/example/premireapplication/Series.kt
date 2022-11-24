@@ -10,9 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.*
 
 @Composable
 fun ScreenSeries(
@@ -31,7 +28,6 @@ fun ScreenSeries(
                 items(series.size) { index ->
                     CardSerie(series[index], navController)
                 }
-
             }
         }
         else -> {
@@ -52,12 +48,8 @@ fun ScreenSeries(
 
 @Composable
 fun CardSerie(tmdbSerie: TmdbSerie, navController: NavHostController) {
-    val text = if (tmdbSerie.first_air_date != null && tmdbSerie.first_air_date != "") {
-        val date = LocalDate.parse(tmdbSerie.first_air_date)
-        date.dayOfMonth.toString() + " " + date.month.getDisplayName(
-            TextStyle.SHORT,
-            Locale.getDefault()
-        ) + " " + date.year.toString()
+    val text = if (!tmdbSerie.first_air_date.isNullOrBlank()) {
+        stringToDate(tmdbSerie.first_air_date)
     } else {
         "No date"
     }
@@ -68,6 +60,4 @@ fun CardSerie(tmdbSerie: TmdbSerie, navController: NavHostController) {
         secondText = text,
         navController = navController
     )
-
-
 }

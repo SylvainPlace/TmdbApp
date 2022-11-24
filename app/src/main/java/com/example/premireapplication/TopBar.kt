@@ -2,6 +2,7 @@ package com.example.premireapplication
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -19,11 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
-
 @Composable
 fun AppTopBar(navController: NavHostController) {
     val searchBool = remember { mutableStateOf(false) }
-    var text by remember { mutableStateOf(TextFieldValue("")) }
     TopAppBar(
         title = {
             AnimatedVisibility(
@@ -31,23 +30,7 @@ fun AppTopBar(navController: NavHostController) {
                 enter = expandHorizontally(expandFrom = Alignment.End),
                 exit = shrinkHorizontally(shrinkTowards = Alignment.End),
             ) {
-                TextField(
-                    modifier = Modifier.animateContentSize(),
-                    value = text,
-                    onValueChange = { newText ->
-                        text = newText
-                    },
-                    placeholder = { Text(text = "Rechercher") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Search
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onSearch = {
-                            navController.navigate("filmsSearch/" + text.text)
-                        }
-                    )
-                )
+                ResearchField(250, navController)
             }
             AnimatedVisibility(
                 visible = !searchBool.value,
@@ -59,26 +42,12 @@ fun AppTopBar(navController: NavHostController) {
                     color = MaterialTheme.colors.onSurface
                 )
             }
-
         },
         actions = {
             IconButton(
                 onClick = { searchBool.value = !searchBool.value },
             ) {
-                if (searchBool.value) {
-                    Icon(
-                        imageVector = Icons.Filled.KeyboardArrowLeft,
-                        contentDescription = "Back",
-                        modifier = Modifier.height(25.dp),
-                    )
-                } else {
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Search",
-                        modifier = Modifier.height(25.dp)
-                    )
-                }
-
+                ResearchIcon(searchBool.value)
             }
         },
         navigationIcon = {
@@ -94,7 +63,7 @@ fun AppTopBar(navController: NavHostController) {
 fun displayReturn(navController: NavHostController, searchBool: MutableState<Boolean>): Boolean {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    if (currentRoute == "filmDetail/{idMovie}" ||currentRoute == "peopleDetail/{idPerson}" || currentRoute == "filmsSearch/{searchTerm}") {
+    if (currentRoute == "filmDetail/{idMovie}" || currentRoute == "peopleDetail/{idPerson}" || currentRoute == "serieDetail/{idSerie}" || currentRoute == "filmsSearch/{searchTerm}") {
         searchBool.value = false
         return true
     }

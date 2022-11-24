@@ -11,9 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.*
 
 @Composable
 fun ScreenSerieDetail(
@@ -45,6 +42,6 @@ fun ScreenSerieDetail(
 @Composable
 fun AirDate(date: String?) {
     if (!date.isNullOrEmpty()) {
-        Text(text = "Premier épisode le " + StringToDate(date))
+        Text(text = "Premier épisode le " + stringToDate(date))
     }
 }

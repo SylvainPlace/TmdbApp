@@ -1,9 +1,7 @@
 package com.example.premireapplication
 
 import androidx.compose.animation.*
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -26,52 +24,24 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Composable
 fun NavRailLeft(navController: NavHostController) {
     val searchBool = remember { mutableStateOf(false) }
-    var text by remember { mutableStateOf(TextFieldValue("")) }
     NavigationRail(
         header = {
             ReturnArrow(navController, searchBool)
-
             AnimatedVisibility(
                 visible = searchBool.value,
-                enter = expandHorizontally(expandFrom = Alignment.Start)+ expandVertically(),
-                exit = shrinkHorizontally(shrinkTowards = Alignment.Start),
+                enter = expandHorizontally(expandFrom = Alignment.Start) + expandVertically(),
+                exit = shrinkHorizontally(shrinkTowards = Alignment.Start) + shrinkVertically(),
             ) {
-                TextField(
-                    modifier = Modifier.animateContentSize().width(150.dp).padding(bottom = 10.dp),
-                    value = text,
-                    onValueChange = { newText ->
-                        text = newText
-                    },
-                    placeholder = { Text(text = "Rechercher") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Search
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onSearch = {
-                            navController.navigate("filmsSearch/" + text.text)
-                        }
-                    )
-                )
-            }
-            FloatingActionButton(
-                onClick = {searchBool.value = !searchBool.value},
-            ){
-                if (searchBool.value) {
-                    Icon(
-                        imageVector = Icons.Filled.KeyboardArrowLeft,
-                        contentDescription = "Back",
-                        modifier = Modifier.height(25.dp),
-                    )
-                } else {
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Search",
-                        modifier = Modifier.height(25.dp)
-                    )
+                Column {
+                    ResearchField(150, navController)
+                    Spacer(modifier = Modifier.padding(10.dp))
                 }
             }
-
+            FloatingActionButton(
+                onClick = { searchBool.value = !searchBool.value },
+            ) {
+                ResearchIcon(searchBool.value)
+            }
         },
         content = {
             val backStackEntry by navController.currentBackStackEntryAsState()
@@ -82,10 +52,10 @@ fun NavRailLeft(navController: NavHostController) {
                     onClick = {
                         navController.navigate(navItem.route) {
                             popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
+                                saveState = false
                             }
-                            launchSingleTop = true
-                            restoreState = true
+                            launchSingleTop = false
+                            restoreState = false
                         }
                     },
                     icon = {
@@ -103,12 +73,13 @@ fun NavRailLeft(navController: NavHostController) {
         }
     )
 }
+
 @Composable
 fun ReturnArrow(navController: NavHostController, searchBool: MutableState<Boolean>) {
     AnimatedVisibility(
         visible = displayReturn(navController, searchBool),
         enter = slideInVertically(),
-        exit = slideOutVertically()+ shrinkVertically(),
+        exit = slideOutVertically() + shrinkVertically(),
     ) {
         IconButton(onClick = { navController.popBackStack() }
         ) {

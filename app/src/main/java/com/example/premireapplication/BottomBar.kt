@@ -14,7 +14,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
-
 data class BarItem(
     val title: String,
     val image: Int,
@@ -46,9 +45,7 @@ fun BottomNavigationBar(navController: NavHostController) {
     BottomNavigation{
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry?.destination?.route
-
         NavBarItems.BarItems.forEach { navItem ->
-
             BottomNavigationItem(
                 selected = currentRoute == navItem.route,
                 onClick = {
@@ -56,11 +53,10 @@ fun BottomNavigationBar(navController: NavHostController) {
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = false
                         }
-                        launchSingleTop = true
+                        launchSingleTop = false
                         restoreState = false
                     }
                 },
-
                 icon = {
                     Icon(
                         painter = painterResource(navItem.image),

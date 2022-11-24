@@ -11,9 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.*
 
 @Composable
 fun ScreenFilmsDetail(
@@ -45,6 +42,6 @@ fun ScreenFilmsDetail(
 @Composable
 fun ReleaseDate(date: String?) {
     if (!date.isNullOrEmpty()) {
-        Text(text = "Sortie le " + StringToDate(date))
+        Text(text = "Sortie le " + stringToDate(date))
     }
 }

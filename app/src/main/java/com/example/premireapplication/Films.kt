@@ -1,22 +1,13 @@
 package com.example.premireapplication
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.material.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import coil.compose.AsyncImage
-import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.*
 
 @Composable
 fun ScreenFilms(
@@ -35,7 +26,6 @@ fun ScreenFilms(
                 items(movies.size) { index ->
                     CardMovie(movies[index], navController)
                 }
-
             }
         }
         else -> {
@@ -56,12 +46,8 @@ fun ScreenFilms(
 
 @Composable
 fun CardMovie(tmdbMovie: TmdbMovie, navController: NavHostController) {
-    var text = if (tmdbMovie.release_date != null && tmdbMovie.release_date != "") {
-        val date = LocalDate.parse(tmdbMovie.release_date)
-        date.dayOfMonth.toString() + " " + date.month.getDisplayName(
-            TextStyle.SHORT,
-            Locale.getDefault()
-        ) + " " + date.year.toString()
+    val text = if (!tmdbMovie.release_date.isNullOrBlank()) {
+        stringToDate(tmdbMovie.release_date)
     } else {
         "No date"
     }
@@ -73,4 +59,3 @@ fun CardMovie(tmdbMovie: TmdbMovie, navController: NavHostController) {
         navController = navController
     )
 }
-
