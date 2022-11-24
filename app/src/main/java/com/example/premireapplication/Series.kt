@@ -17,8 +17,8 @@ import java.util.*
 @Composable
 fun ScreenSeries(
     windowClass: WindowSizeClass,
-                 navController: NavHostController,
-                 series: List<TmdbSerie>
+    navController: NavHostController,
+    series: List<TmdbSerie>
 ) {
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
@@ -52,16 +52,22 @@ fun ScreenSeries(
 
 @Composable
 fun CardSerie(tmdbSerie: TmdbSerie, navController: NavHostController) {
-    val text = if(tmdbSerie.first_air_date!=null&&tmdbSerie.first_air_date!=""){
+    val text = if (tmdbSerie.first_air_date != null && tmdbSerie.first_air_date != "") {
         val date = LocalDate.parse(tmdbSerie.first_air_date)
         date.dayOfMonth.toString() + " " + date.month.getDisplayName(
             TextStyle.SHORT,
             Locale.getDefault()
         ) + " " + date.year.toString()
-    }else{
+    } else {
         "No date"
     }
-    GeneralCard(route = "serieDetail/" + tmdbSerie.id, imgPath = tmdbSerie.poster_path, firstText = tmdbSerie.name, secondText = text, navController = navController)
+    GeneralCard(
+        route = "serieDetail/" + tmdbSerie.id,
+        imgPath = tmdbSerie.poster_path,
+        firstText = tmdbSerie.name,
+        secondText = text,
+        navController = navController
+    )
 
 
 }

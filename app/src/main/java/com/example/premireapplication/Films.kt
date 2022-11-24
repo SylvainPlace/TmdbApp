@@ -56,17 +56,21 @@ fun ScreenFilms(
 
 @Composable
 fun CardMovie(tmdbMovie: TmdbMovie, navController: NavHostController) {
-    var text = if(tmdbMovie.release_date!=null&&tmdbMovie.release_date!=""){
+    var text = if (tmdbMovie.release_date != null && tmdbMovie.release_date != "") {
         val date = LocalDate.parse(tmdbMovie.release_date)
-
         date.dayOfMonth.toString() + " " + date.month.getDisplayName(
             TextStyle.SHORT,
             Locale.getDefault()
         ) + " " + date.year.toString()
-
-    }else{
+    } else {
         "No date"
     }
-    GeneralCard(route = "filmDetail/" + tmdbMovie.id, imgPath = tmdbMovie.poster_path, firstText = tmdbMovie.title, secondText = text, navController = navController)
+    GeneralCard(
+        route = "filmDetail/" + tmdbMovie.id,
+        imgPath = tmdbMovie.poster_path,
+        firstText = tmdbMovie.title,
+        secondText = text,
+        navController = navController
+    )
 }
 

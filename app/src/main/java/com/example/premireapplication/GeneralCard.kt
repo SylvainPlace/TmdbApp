@@ -29,12 +29,9 @@ fun GeneralCard(
             .padding(15.dp)
             .clickable { navController.navigate(route) },
         elevation = 10.dp,
-        shape = MaterialTheme.shapes.medium,
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
     ) {
         Column {
-            if (imgPath!=null){
+            if (imgPath != null) {
                 AsyncImage(
                     model = "https://image.tmdb.org/t/p/w500$imgPath",
                     contentDescription = firstText
@@ -48,7 +45,7 @@ fun GeneralCard(
                 modifier = Modifier
                     .width(180.dp),
             )
-            if(secondText!=null){
+            if (secondText != null) {
                 Text(
                     text = secondText
                 )

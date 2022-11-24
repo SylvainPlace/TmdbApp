@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 const val api_key = "7207dd94649f08047a55ef9572aa3129"
 const val language = "fr"
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/")
@@ -39,12 +39,14 @@ class MainViewModel: ViewModel() {
             movies.value = res.results
         }
     }
+
     fun getSeries() {
         viewModelScope.launch {
             val res = service.lastseries(api_key)
             series.value = res.results
         }
     }
+
     fun getPeople() {
         viewModelScope.launch {
             val res = service.lastpeople(api_key, language)
@@ -54,7 +56,7 @@ class MainViewModel: ViewModel() {
 
     fun getFilmDetails(id: Int) {
         viewModelScope.launch {
-            if(id!=0){
+            if (id != 0) {
                 filmDetail.value = service.detailmovie(id, api_key, language)
             }
         }
@@ -62,7 +64,7 @@ class MainViewModel: ViewModel() {
 
     fun getSerieDetails(id: Int) {
         viewModelScope.launch {
-            if(id!=0){
+            if (id != 0) {
                 serieDetail.value = service.detailserie(id, api_key, language)
             }
         }
@@ -70,11 +72,12 @@ class MainViewModel: ViewModel() {
 
     fun getPersonDetails(id: Int) {
         viewModelScope.launch {
-            if(id!=0){
+            if (id != 0) {
                 personDetail.value = service.detailperson(id, api_key, language)
             }
         }
     }
+
     fun getFilmSearch(query: String) {
         viewModelScope.launch {
             val res = service.searchmovie(query, api_key, language)

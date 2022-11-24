@@ -23,7 +23,9 @@ fun ScreenProfile(windowClass: WindowSizeClass, navController: NavController) {
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             Column(
-                modifier = Modifier.fillMaxSize().padding(20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -33,7 +35,9 @@ fun ScreenProfile(windowClass: WindowSizeClass, navController: NavController) {
         }
         else -> {
             Row(
-                modifier = Modifier.fillMaxSize().padding(20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
@@ -49,7 +53,7 @@ fun ScreenProfile(windowClass: WindowSizeClass, navController: NavController) {
 fun ImageNom() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         MonImage()
         Nom("Sylvain Place")
     }
@@ -59,13 +63,13 @@ fun ImageNom() {
 fun Descrip(navController: NavController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Description("Ingénieur ISIS FIE4")
         Column(
             horizontalAlignment = Alignment.Start
         ) {
-            IconText(R.drawable.email,"sylvain@place.fr")
-            IconText(R.drawable.linkedin,"sylvainplc")
+            IconText(R.drawable.email, "sylvain@place.fr")
+            IconText(R.drawable.linkedin, "sylvainplc")
         }
         ButtonCustom(navController)
     }
@@ -82,8 +86,9 @@ fun MonImage() {
             .clip(CircleShape)
     )
 }
+
 @Composable
-fun Nom(contenu: String){
+fun Nom(contenu: String) {
     Text(
         text = contenu,
         style = MaterialTheme.typography.h2,
@@ -92,7 +97,7 @@ fun Nom(contenu: String){
 }
 
 @Composable
-fun Description(contenu: String){
+fun Description(contenu: String) {
     Text(
         text = contenu,
         modifier = Modifier.padding(10.dp)
@@ -100,8 +105,8 @@ fun Description(contenu: String){
 }
 
 @Composable
-fun IconText(icon:Int, text: String){
-    Row{
+fun IconText(icon: Int, text: String) {
+    Row {
         Image(
             painterResource(id = icon),
             contentDescription = "email",
@@ -116,7 +121,7 @@ fun IconText(icon:Int, text: String){
 }
 
 @Composable
-fun ButtonCustom(navController: NavController){
+fun ButtonCustom(navController: NavController) {
     Button(onClick = { navController.navigate("films") }) {
         Text(text = "Démarrer")
     }

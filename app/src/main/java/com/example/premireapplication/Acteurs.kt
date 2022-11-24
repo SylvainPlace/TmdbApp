@@ -19,7 +19,8 @@ import coil.compose.AsyncImage
 fun ScreenActeurs(
     windowClass: WindowSizeClass,
     navController: NavHostController,
-    people: List<TmdbPerson>,) {
+    people: List<TmdbPerson>,
+) {
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             LazyVerticalGrid(
@@ -31,7 +32,6 @@ fun ScreenActeurs(
                 items(people.size) { index ->
                     CardPeople(people[index], navController)
                 }
-
             }
         }
         else -> {
@@ -44,7 +44,6 @@ fun ScreenActeurs(
                 items(people.size) { index ->
                     CardPeople(people[index], navController)
                 }
-
             }
         }
     }
@@ -52,5 +51,11 @@ fun ScreenActeurs(
 
 @Composable
 fun CardPeople(tmdbPerson: TmdbPerson, navController: NavHostController) {
-    GeneralCard(route = "peopleDetail/" + tmdbPerson.id, imgPath = tmdbPerson.profile_path, firstText = tmdbPerson.name, secondText = tmdbPerson.known_for_department, navController = navController)
+    GeneralCard(
+        route = "peopleDetail/" + tmdbPerson.id,
+        imgPath = tmdbPerson.profile_path,
+        firstText = tmdbPerson.name,
+        secondText = tmdbPerson.known_for_department,
+        navController = navController
+    )
 }

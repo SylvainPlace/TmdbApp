@@ -170,7 +170,7 @@ data class SerieDetails(
     val original_name: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: Any,
+    val poster_path: String,
     val production_companies: List<Any>,
     val production_countries: List<ProductionCountry>,
     val seasons: List<Season>,
