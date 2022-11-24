@@ -66,11 +66,11 @@ fun MyTheme(
     val systemUiController = rememberSystemUiController()
     if(isSystemInDarkTheme()){
         systemUiController.setSystemBarsColor(
-            color = onSurfaceDarkColor
+            color = surfaceDarkColor
         )
     }else{
         systemUiController.setSystemBarsColor(
-            color = Color.White
+            color = surfaceColor
         )
     }
     MaterialTheme(

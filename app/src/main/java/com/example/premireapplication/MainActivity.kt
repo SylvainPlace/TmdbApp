@@ -134,6 +134,17 @@ fun NavigationHost(
             )
         }
         composable(
+            "serieDetail/{idSerie}",
+            arguments = listOf(navArgument("idSerie") { type = NavType.IntType })
+        ) {
+            ScreenSerieDetail(
+                mainViewModel,
+                backStackEntry?.arguments?.getInt("idSerie"),
+                navController,
+                windowClass
+            )
+        }
+        composable(
             "peopleDetail/{idPerson}",
             arguments = listOf(navArgument("idPerson") { type = NavType.IntType })
         ) {

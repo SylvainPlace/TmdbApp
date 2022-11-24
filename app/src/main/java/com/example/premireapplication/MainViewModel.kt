@@ -23,6 +23,7 @@ class MainViewModel: ViewModel() {
     val series = MutableStateFlow<List<TmdbSerie>>(listOf())
     val people = MutableStateFlow<List<TmdbPerson>>(listOf())
     val filmDetail = MutableStateFlow<TmdbMovieDetails?>(null)
+    val serieDetail = MutableStateFlow<SerieDetails?>(null)
     val personDetail = MutableStateFlow<PersonDetails?>(null)
     val searchMovies = MutableStateFlow<List<TmdbMovie>>(listOf())
 
@@ -55,6 +56,14 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             if(id!=0){
                 filmDetail.value = service.detailmovie(id, api_key, language)
+            }
+        }
+    }
+
+    fun getSerieDetails(id: Int) {
+        viewModelScope.launch {
+            if(id!=0){
+                serieDetail.value = service.detailserie(id, api_key, language)
             }
         }
     }

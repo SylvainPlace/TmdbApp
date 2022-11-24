@@ -19,6 +19,9 @@ interface TmdbAPI {
     @GET("movie/{id}")
     suspend fun detailmovie(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): TmdbMovieDetails
 
+    @GET("tv/{id}")
+    suspend fun detailserie(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): SerieDetails
+
     @GET("person/{id}")
     suspend fun detailperson(@Path("id") id:Int, @Query("api_key") api_key: String, @Query("language") language: String, @Query("append_to_response") append_to_response: String = "credits"): PersonDetails
 
