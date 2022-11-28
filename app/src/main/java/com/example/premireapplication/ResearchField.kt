@@ -39,13 +39,17 @@ fun ResearchField(size: Int, navController: NavHostController) {
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
-                val currentRoute = backStackEntry?.destination?.route
-                println(currentRoute)
-                when (currentRoute){
+                when (backStackEntry?.destination?.route) {
                     "films" -> navController.navigate("filmsSearch/" + text.text)
+                    "filmDetail/{idMovie}" -> navController.navigate("filmsSearch/" + text.text)
+                    "filmsSearch/{searchTerm}" -> navController.navigate("filmsSearch/" + text.text)
                     "series" -> navController.navigate("seriesSearch/" + text.text)
+                    "serieDetail/{idSerie}" -> navController.navigate("seriesSearch/" + text.text)
+                    "seriesSearch/{searchTerm}" -> navController.navigate("seriesSearch/" + text.text)
                     "people" -> navController.navigate("peopleSearch/" + text.text)
-
+                    "peopleDetail/{idPerson}" -> navController.navigate("peopleSearch/" + text.text)
+                    "peopleSearch/{searchTerm}" -> navController.navigate("peopleSearch/" + text.text)
+                    else -> navController.navigate("filmsSearch/" + text.text)
                 }
             }
         )
