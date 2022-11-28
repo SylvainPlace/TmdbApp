@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -32,7 +33,7 @@ fun ResearchField(size: Int, navController: NavHostController) {
         onValueChange = { newText ->
             text = newText
         },
-        placeholder = { Text(text = "Rechercher") },
+        placeholder = { Text(text = stringResource(R.string.field_search)) },
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Search

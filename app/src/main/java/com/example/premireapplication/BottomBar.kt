@@ -9,13 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 data class BarItem(
-    val title: String,
+    val title: Int,
     val image: Int,
     val route: String
 )
@@ -23,17 +24,17 @@ data class BarItem(
 object NavBarItems {
     val BarItems = listOf(
         BarItem(
-            title = "Films",
+            title = R.string.menu_movie,
             image = R.drawable.movie,
             route = "films"
         ),
         BarItem(
-            title = "Series",
+            title = R.string.menu_tv,
             image = R.drawable.tv,
             route = "series"
         ),
         BarItem(
-            title = "Acteurs",
+            title = R.string.menu_person,
             image = R.drawable.actor,
             route = "people"
         )
@@ -60,12 +61,12 @@ fun BottomNavigationBar(navController: NavHostController) {
                 icon = {
                     Icon(
                         painter = painterResource(navItem.image),
-                        contentDescription = navItem.title,
+                        contentDescription = stringResource(navItem.title),
                         modifier = Modifier.height(25.dp)
                     )
                 },
                 label = {
-                    Text(text = navItem.title)
+                    Text(text = stringResource(navItem.title))
                 },
             )
         }
