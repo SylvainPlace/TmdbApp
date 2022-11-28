@@ -18,10 +18,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun ResearchField(size: Int, navController: NavHostController) {
     var text by remember { mutableStateOf(TextFieldValue("")) }
+    val backStackEntry by navController.currentBackStackEntryAsState()
     TextField(
         modifier = Modifier
             .animateContentSize()
@@ -37,7 +39,14 @@ fun ResearchField(size: Int, navController: NavHostController) {
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
-                navController.navigate("filmsSearch/" + text.text)
+                val currentRoute = backStackEntry?.destination?.route
+                println(currentRoute)
+                when (currentRoute){
+                    "films" -> navController.navigate("filmsSearch/" + text.text)
+                    "series" -> navController.navigate("seriesSearch/" + text.text)
+                    "people" -> navController.navigate("peopleSearch/" + text.text)
+
+                }
             }
         )
     )

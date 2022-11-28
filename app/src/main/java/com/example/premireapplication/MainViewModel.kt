@@ -26,6 +26,8 @@ class MainViewModel : ViewModel() {
     val serieDetail = MutableStateFlow<SerieDetails?>(null)
     val personDetail = MutableStateFlow<PersonDetails?>(null)
     val searchMovies = MutableStateFlow<List<TmdbMovie>>(listOf())
+    val searchSeries = MutableStateFlow<List<TmdbSerie>>(listOf())
+    val searchPeople = MutableStateFlow<List<TmdbPerson>>(listOf())
 
     init {
         getMovies()
@@ -82,7 +84,18 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             val res = service.searchmovie(query, api_key, language)
             searchMovies.value = res.results
-
+        }
+    }
+    fun getSerieSearch(query: String) {
+        viewModelScope.launch {
+            val res = service.searchserie(query, api_key, language)
+            searchSeries.value = res.results
+        }
+    }
+    fun getPeopleSearch(query: String) {
+        viewModelScope.launch {
+            val res = service.searchpeople(query, api_key, language)
+            searchPeople.value = res.results
         }
     }
 }

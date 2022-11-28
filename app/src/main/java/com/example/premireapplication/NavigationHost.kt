@@ -80,7 +80,28 @@ fun NavigationHost(
                     val movies by mainViewModel.searchMovies.collectAsState()
                     ScreenFilms(windowClass, navController, movies)
                 }
-
+        }
+        composable(
+            "seriesSearch/{searchTerm}",
+            arguments = listOf(navArgument("searchTerm") { type = NavType.StringType })
+        ) {
+            backStackEntry?.arguments?.getString("searchTerm")
+                ?.let { it1 ->
+                    mainViewModel.getSerieSearch(it1)
+                    val series by mainViewModel.searchSeries.collectAsState()
+                    ScreenSeries(windowClass, navController, series)
+                }
+        }
+        composable(
+            "peopleSearch/{searchTerm}",
+            arguments = listOf(navArgument("searchTerm") { type = NavType.StringType })
+        ) {
+            backStackEntry?.arguments?.getString("searchTerm")
+                ?.let { it1 ->
+                    mainViewModel.getPeopleSearch(it1)
+                    val people by mainViewModel.searchPeople.collectAsState()
+                    ScreenActeurs(windowClass, navController, people)
+                }
         }
     }
 }
