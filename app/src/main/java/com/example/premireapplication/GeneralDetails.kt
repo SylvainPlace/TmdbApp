@@ -103,7 +103,7 @@ fun Note(note: Double?) {
         Row(
             modifier = Modifier.padding(vertical = 20.dp)
         ) {
-            Text(text = "  Note ")
+            Text(text = "Note ")
             LinearProgressIndicator(
                 progress = (note / 10).toFloat(),
                 modifier = Modifier.padding(top = 10.dp),
@@ -120,7 +120,7 @@ fun Popularity(popularity: Double?) {
         Row(
             modifier = Modifier.padding(vertical = 20.dp)
         ) {
-            Text(text = "  Note ")
+            Text(text = "Popularité ")
             LinearProgressIndicator(
                 progress = (popularity / 100).toFloat(),
                 modifier = Modifier.padding(top = 10.dp),
@@ -143,7 +143,6 @@ fun Casting(
             visible = !display.value,
             exit = shrinkVertically(),
         ) {
-            println("de")
             Button(
                 onClick = { display.value = !display.value },
                 Modifier.padding(bottom = 80.dp),
@@ -155,7 +154,6 @@ fun Casting(
             visible = display.value,
             enter = expandVertically() + slideInVertically(),
         ) {
-            println("actor")
             Column {
                 Text(
                     text = "Casting",

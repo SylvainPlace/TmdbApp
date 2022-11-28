@@ -27,4 +27,14 @@
     <string name="image_view_item_transform_content_description">Represents an image view in the
         item
     </string>
+    <string name="back_search">Retour de la recherche</string>
+    <string name="icon_search">Icone de recherche</string>
+    <string name="cast_in">Joue dans</string>
+    <string name="crew_in">Est dans l\'équipe de</string>
+    <string name="biography">Biographie</string>
+    <string name="born_on">Né(e) le</string>
+    <string name="deceased_on">Décédé(e) le</string>
+    <string name="and">et</string>
+    <string name="released_on">Sortie le</string>
+    <string name="no_date">Pas de date</string>
 </resources>

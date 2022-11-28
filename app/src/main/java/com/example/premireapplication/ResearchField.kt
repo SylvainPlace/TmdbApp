@@ -62,13 +62,13 @@ fun ResearchIcon(searchBool: Boolean) {
     if (searchBool) {
         Icon(
             imageVector = Icons.Filled.KeyboardArrowLeft,
-            contentDescription = "Back",
+            contentDescription = stringResource(R.string.back_search),
             modifier = Modifier.height(25.dp),
         )
     } else {
         Icon(
             imageVector = Icons.Filled.Search,
-            contentDescription = "Search",
+            contentDescription = stringResource(R.string.icon_search),
             modifier = Modifier.height(25.dp)
         )
     }

@@ -6,6 +6,7 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
@@ -49,7 +50,7 @@ fun CardMovie(tmdbMovie: TmdbMovie, navController: NavHostController) {
     val text = if (!tmdbMovie.release_date.isNullOrBlank()) {
         stringToDate(tmdbMovie.release_date)
     } else {
-        "No date"
+        stringResource(R.string.no_date)
     }
     GeneralCard(
         route = "filmDetail/" + tmdbMovie.id,

@@ -17,6 +17,14 @@
     <string name="menu_tv">TV Show</string>
     <string name="menu_person">Actor</string>
     <string name="field_search">Search</string>
+    <string name="back_search">Back Search</string>
+    <string name="icon_search">Icon Search</string>
+    <string name="cast_in">Cast in</string>
+    <string name="crew_in">Crew in</string>
+    <string name="biography">Biography</string>
+    <string name="born_on">Born on</string>
+    <string name="deceased_on">Deceased on</string>
+    <string name="and">and</string>
 
     <string name="lorem_ipsum_title">Lorem Ipsum"</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
@@ -28,4 +36,6 @@
     <string name="image_view_item_transform_content_description">Represents an image view in the
         item
     </string>
+    <string name="released_on">Released on</string>
+    <string name="no_date">No date</string>
 </resources>

@@ -13,6 +13,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -30,7 +31,9 @@ fun ScreenActeurDetail(
         viewModel.getPersonDetails(id)
         val personDetail by viewModel.personDetail.collectAsState()
         Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
         ) {
             personDetail?.let {
                 FirstTitle(it.name)
@@ -38,8 +41,18 @@ fun ScreenActeurDetail(
                 Biography(it.biography)
                 LifeDate(it.birthday, it.deathday)
                 Popularity(it.popularity)
-                MovieCastOrCrew("Joue dans", it.credits.cast, windowClass, navController)
-                MovieCastOrCrew("Est dans l'équipe de", it.credits.crew, windowClass, navController)
+                MovieCastOrCrew(
+                    stringResource(R.string.cast_in),
+                    it.credits.cast,
+                    windowClass,
+                    navController
+                )
+                MovieCastOrCrew(
+                    stringResource(R.string.crew_in),
+                    it.credits.crew,
+                    windowClass,
+                    navController
+                )
             }
         }
     }
@@ -50,7 +63,7 @@ fun Biography(biography: String?) {
     if (!biography.isNullOrEmpty()) {
         Column {
             Text(
-                text = "Biographie",
+                text = stringResource(R.string.biography),
                 style = MaterialTheme.typography.h5,
             )
             Text(
@@ -66,14 +79,14 @@ fun Biography(biography: String?) {
 fun LifeDate(birthday: String?, deathday: String?) {
     Row {
         if (birthday != null) {
-            Text(text = "Né le " + stringToDate(birthday))
+            Text(text = stringResource(R.string.born_on) + " " + stringToDate(birthday))
 
             if (deathday != null) {
-                Text(text = " et ")
+                Text(text = " " + stringResource(R.string.and) + " ")
             }
         }
         if (deathday != null) {
-            Text(text = "décédé le " + stringToDate(deathday))
+            Text(text = stringResource(R.string.deceased_on) + stringToDate(deathday))
 
         }
     }

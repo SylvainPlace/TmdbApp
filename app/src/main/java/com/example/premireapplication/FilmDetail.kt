@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 
 @Composable
@@ -22,7 +23,9 @@ fun ScreenFilmsDetail(
         viewModel.getFilmDetails(id)
         val movieDetails by viewModel.filmDetail.collectAsState()
         Column(
-            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
         ) {
             movieDetails?.let {
                 FirstTitle(it.title)
@@ -40,6 +43,6 @@ fun ScreenFilmsDetail(
 @Composable
 fun ReleaseDate(date: String?) {
     if (!date.isNullOrEmpty()) {
-        Text(text = "Sortie le " + stringToDate(date))
+        Text(text = stringResource(R.string.released_on) + " " + stringToDate(date))
     }
 }
