@@ -1,15 +1,20 @@
 package com.example.premireapplication
 
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import kotlin.math.roundToInt
 
 @Composable
 fun ScreenSeries(
@@ -17,12 +22,30 @@ fun ScreenSeries(
     navController: NavHostController,
     series: List<TmdbSerie>
 ) {
+    var offsetX by remember { mutableStateOf(0f) }
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             LazyVerticalGrid(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 55.dp),
+                    .padding(bottom = 55.dp)
+                    .offset { IntOffset(offsetX.roundToInt(), 0) }
+                    .draggable(
+                        orientation = Orientation.Horizontal,
+                        state = rememberDraggableState { delta ->
+                            offsetX += delta
+
+                        },
+                        onDragStopped = {
+                            if (offsetX < -100f) {
+                                navController.navigate("people")
+                            } else if (offsetX > 100f) {
+                                navController.navigate("films")
+                            } else {
+                                offsetX = 0f
+                            }
+                        }
+                    ),
                 columns = GridCells.Adaptive(150.dp)
             ) {
                 items(series.size) { index ->

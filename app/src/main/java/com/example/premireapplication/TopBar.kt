@@ -52,7 +52,7 @@ fun AppTopBar(navController: NavHostController) {
 fun displayReturn(navController: NavHostController, searchBool: MutableState<Boolean>): Boolean {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    if (currentRoute == "filmDetail/{idMovie}" || currentRoute == "peopleDetail/{idPerson}" || currentRoute == "serieDetail/{idSerie}" || currentRoute == "filmsSearch/{searchTerm}") {
+    if (currentRoute == "filmDetail/{idMovie}" || currentRoute == "peopleDetail/{idPerson}" || currentRoute == "serieDetail/{idSerie}" || currentRoute == "filmsSearch/{searchTerm}"|| currentRoute == "seriesSearch/{searchTerm}"|| currentRoute == "peopleSearch/{searchTerm}") {
         searchBool.value = false
         return true
     }
