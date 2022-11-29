@@ -1,5 +1,7 @@
 package com.example.premireapplication
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
@@ -13,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 @Composable
@@ -21,26 +24,36 @@ fun ScreenFilms(
     navController: NavHostController,
     movies: List<TmdbMovie>
 ) {
-    var offsetX by remember { mutableStateOf(0f) }
+    val offsetX = remember { Animatable(0f) }
+    val coroutineScope = rememberCoroutineScope()
     when (windowClass.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             LazyVerticalGrid(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 55.dp)
-                    .offset { IntOffset(offsetX.roundToInt(), 0) }
+                    .offset { IntOffset(offsetX.value.roundToInt(), 0) }
                     .draggable(
                         orientation = Orientation.Horizontal,
                         state = rememberDraggableState { delta ->
-                            if (delta < 0) {
-                                offsetX += delta
+                            if (offsetX.value < 100) {
+                                coroutineScope.launch {
+                                    offsetX.snapTo(offsetX.value + delta)
+                                }
                             }
                         },
                         onDragStopped = {
-                            if (offsetX < -100f) {
+                            if (offsetX.value < -150f) {
                                 navController.navigate("series")
-                            } else {
-                                offsetX = 0f
+                            }
+                            coroutineScope.launch {
+                                offsetX.animateTo(
+                                    targetValue = 0f,
+                                    animationSpec = tween(
+                                        durationMillis = 200,
+                                        delayMillis = 0
+                                    )
+                                )
                             }
                         }
                     ),
