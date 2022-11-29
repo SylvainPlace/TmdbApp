@@ -43,18 +43,20 @@ fun ScreenFilms(
                             }
                         },
                         onDragStopped = {
-                            if (offsetX.value < -150f) {
+                            if (offsetX.value < -100f) {
                                 navController.navigate("series")
-                            }
-                            coroutineScope.launch {
-                                offsetX.animateTo(
-                                    targetValue = 0f,
-                                    animationSpec = tween(
-                                        durationMillis = 200,
-                                        delayMillis = 0
+                            } else {
+                                coroutineScope.launch {
+                                    offsetX.animateTo(
+                                        targetValue = 0f,
+                                        animationSpec = tween(
+                                            durationMillis = 200,
+                                            delayMillis = 0
+                                        )
                                     )
-                                )
+                                }
                             }
+
                         }
                     ),
                 columns = GridCells.Adaptive(150.dp)

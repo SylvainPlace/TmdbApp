@@ -44,7 +44,7 @@ fun ScreenActeurs(
                             }
                         },
                         onDragStopped = {
-                            if (offsetX.value > 150f) {
+                            if (offsetX.value > 100f) {
                                 navController.navigate("series")
                             } else {
                                 coroutineScope.launch {

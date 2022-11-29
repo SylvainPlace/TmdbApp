@@ -40,12 +40,11 @@ fun ScreenSeries(
                             coroutineScope.launch {
                                 offsetX.snapTo(offsetX.value + delta)
                             }
-
                         },
                         onDragStopped = {
-                            if (offsetX.value < -150f) {
+                            if (offsetX.value < -100f) {
                                 navController.navigate("people")
-                            } else if (offsetX.value > 150f) {
+                            } else if (offsetX.value > 100f) {
                                 navController.navigate("films")
                             } else {
                                 coroutineScope.launch {
