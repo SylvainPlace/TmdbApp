@@ -1,7 +1,8 @@
 package com.example.premireapplication
 
 import androidx.compose.animation.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
@@ -9,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(navController: NavHostController) {
     val searchBool = remember { mutableStateOf(false) }
@@ -19,7 +21,7 @@ fun AppTopBar(navController: NavHostController) {
                 enter = expandHorizontally(expandFrom = Alignment.End),
                 exit = shrinkHorizontally(shrinkTowards = Alignment.End),
             ) {
-                ResearchField(250, navController)
+                ResearchField(350, navController)
             }
             AnimatedVisibility(
                 visible = !searchBool.value,
@@ -28,7 +30,7 @@ fun AppTopBar(navController: NavHostController) {
             ) {
                 Text(
                     text = "Fav'App",
-                    color = MaterialTheme.colors.onSurface
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         },
@@ -42,9 +44,7 @@ fun AppTopBar(navController: NavHostController) {
         navigationIcon = {
             ReturnArrow(navController, searchBool)
         },
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = Color.White,
-        elevation = 12.dp
+        scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     )
 }
 

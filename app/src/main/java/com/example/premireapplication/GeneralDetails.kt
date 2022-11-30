@@ -2,10 +2,10 @@ package com.example.premireapplication
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
@@ -29,7 +29,7 @@ fun FirstTitle(title: String?) {
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.h3,
+                style = MaterialTheme.typography.displaySmall,
                 textAlign = TextAlign.Center,
             )
         }
@@ -55,7 +55,7 @@ fun ImgWithSubtitle(path: String?, subtitle: String?) {
                 text = subtitle,
                 modifier = Modifier.padding(bottom = 40.dp),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.subtitle1
+                style = MaterialTheme.typography.titleMedium
             )
         }
     }
@@ -68,7 +68,7 @@ fun Overview(overview: String?) {
         Column {
             Text(
                 text = "Description",
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.headlineSmall,
             )
             Text(
                 text = overview,
@@ -84,7 +84,7 @@ fun Genres(genres: List<Genre>?) {
         Column {
             Text(
                 text = "Genres",
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(top = 20.dp)
             )
             for (genre in genres) {
@@ -107,7 +107,7 @@ fun Note(note: Double?) {
             LinearProgressIndicator(
                 progress = (note / 10).toFloat(),
                 modifier = Modifier.padding(top = 10.dp),
-                color = MaterialTheme.colors.surface
+                color = MaterialTheme.colorScheme.surface
             )
             Text(text = "  $note")
         }
@@ -124,7 +124,7 @@ fun Popularity(popularity: Double?) {
             LinearProgressIndicator(
                 progress = (popularity / 100).toFloat(),
                 modifier = Modifier.padding(top = 10.dp),
-                color = MaterialTheme.colors.surface
+                color = MaterialTheme.colorScheme.surface
             )
             Text(text = "  $popularity")
         }
@@ -157,7 +157,7 @@ fun Casting(
             Column {
                 Text(
                     text = "Casting",
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.headlineSmall,
                 )
                 FlowRow(
                     mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween

@@ -7,7 +7,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
@@ -64,7 +64,7 @@ fun Biography(biography: String?) {
         Column {
             Text(
                 text = stringResource(R.string.biography),
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.headlineSmall,
             )
             Text(
                 text = biography,
@@ -119,7 +119,7 @@ fun MovieCastOrCrew(
             Column {
                 Text(
                     text = initText,
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.headlineSmall,
                 )
                 FlowRow(
                     mainAxisAlignment = FlowMainAxisAlignment.SpaceBetween

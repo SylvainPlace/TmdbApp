@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
             MyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     val windowSizeClass = calculateWindowSizeClass(this)
                     val navController = rememberNavController()
@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Screen(windowClass: WindowSizeClass, navController: NavHostController) {
     val mainViewModel = MainViewModel()
@@ -43,12 +44,17 @@ fun Screen(windowClass: WindowSizeClass, navController: NavHostController) {
                 topBar = {
                     AppTopBar(navController)
                 },
-                content = {
-                    NavigationHost(
-                        navController = navController,
-                        windowClass = windowClass,
-                        mainViewModel = mainViewModel
-                    )
+                content = { innerPadding ->
+                    Column(
+                        Modifier.padding(innerPadding)
+                    ) {
+                        NavigationHost(
+                            navController = navController,
+                            windowClass = windowClass,
+                            mainViewModel = mainViewModel
+                        )
+                    }
+
                 },
                 bottomBar = {
                     if (displayBottomBar(navController)) {

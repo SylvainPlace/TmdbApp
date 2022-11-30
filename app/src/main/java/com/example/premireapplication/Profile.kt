@@ -3,9 +3,9 @@ package com.example.premireapplication
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
@@ -90,7 +90,7 @@ fun MonImage() {
 fun Nom(contenu: String) {
     Text(
         text = contenu,
-        style = MaterialTheme.typography.h2,
+        style = MaterialTheme.typography.displayMedium,
         fontSize = 12.em
     )
 }

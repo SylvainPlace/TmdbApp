@@ -32,7 +32,6 @@ fun ScreenSeries(
             LazyVerticalGrid(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 55.dp)
                     .offset { IntOffset(offsetX.value.roundToInt(), 0) }
                     .draggable(
                         orientation = Orientation.Horizontal,

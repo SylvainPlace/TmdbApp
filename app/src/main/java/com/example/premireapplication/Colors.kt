@@ -1,9 +1,9 @@
 package com.example.premireapplication
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -32,12 +32,11 @@ val onSurfaceDarkColor = Color(0xffD1E4FF)
 val backgroundDarkColor = Color(0xff1B1C1D)
 val onBackgroundDarkColor = Color(0xffE4E2E3)
 
-private val LightColors = lightColors(
+private val LightColors = lightColorScheme(
     primary = primaryColor,
-    primaryVariant = primaryVariantColor,
+    tertiary = primaryVariantColor,
     onPrimary = onPrimaryColor,
     secondary = secondaryColor,
-    secondaryVariant = secondaryVariantColor,
     onSecondary = onSecondaryColor,
     error = errorColor,
     onError = Color.White,
@@ -46,12 +45,11 @@ private val LightColors = lightColors(
     background = backgroundColor,
     onBackground = onBackgroundColor,
 )
-private val DarkColors = darkColors(
+private val DarkColors = darkColorScheme(
     primary = primaryDarkColor,
-    primaryVariant = primaryVariantDarkColor,
+    tertiary = primaryVariantDarkColor,
     onPrimary = onPrimaryDarkColor,
     secondary = secondaryDarkColor,
-    secondaryVariant = secondaryVariantDarkColor,
     onSecondary = onSecondaryDarkColor,
     error = errorColor,
     onError = Color.White,
@@ -74,7 +72,7 @@ fun MyTheme(
         )
     }
     MaterialTheme(
-        colors = if (isSystemInDarkTheme()) DarkColors else LightColors,
+        colorScheme  = if (isSystemInDarkTheme()) DarkColors else LightColors,
         content = content
     )
 }

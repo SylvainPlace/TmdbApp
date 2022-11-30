@@ -1,10 +1,10 @@
 package com.example.premireapplication
 
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -43,11 +43,11 @@ object NavBarItems {
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    BottomNavigation{
+    NavigationBar{
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry?.destination?.route
         NavBarItems.BarItems.forEach { navItem ->
-            BottomNavigationItem(
+            NavigationBarItem(
                 selected = currentRoute == navItem.route,
                 onClick = {
                     navController.navigate(navItem.route) {
