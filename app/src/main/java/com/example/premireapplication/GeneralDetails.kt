@@ -59,7 +59,6 @@ fun ImgWithSubtitle(path: String?, subtitle: String?) {
             )
         }
     }
-
 }
 
 @Composable
@@ -93,7 +92,6 @@ fun Genres(genres: List<Genre>?) {
                 )
             }
         }
-
     }
 }
 
@@ -181,8 +179,6 @@ fun Casting(
                     }
                 }
             }
-
         }
-
     }
 }

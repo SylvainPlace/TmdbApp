@@ -55,7 +55,6 @@ fun ScreenFilms(
                                     )
                                 }
                             }
-
                         }
                     ),
                 columns = GridCells.Adaptive(150.dp)
@@ -75,7 +74,6 @@ fun ScreenFilms(
                 items(movies.size) { index ->
                     CardMovie(movies[index], navController)
                 }
-
             }
         }
     }

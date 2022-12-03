@@ -14,13 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.premireapplication.ui.theme.PremièreApplicationTheme
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme {
+            PremièreApplicationTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -71,7 +72,6 @@ fun Screen(windowClass: WindowSizeClass, navController: NavHostController) {
                     windowClass = windowClass,
                     mainViewModel = mainViewModel
                 )
-
             }
         }
     }

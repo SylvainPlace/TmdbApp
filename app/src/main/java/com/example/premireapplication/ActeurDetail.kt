@@ -71,7 +71,6 @@ fun Biography(biography: String?) {
                 modifier = Modifier.padding(bottom = 20.dp),
             )
         }
-
     }
 }
 
@@ -80,7 +79,6 @@ fun LifeDate(birthday: String?, deathday: String?) {
     Row {
         if (birthday != null) {
             Text(text = stringResource(R.string.born_on) + " " + stringToDate(birthday))
-
             if (deathday != null) {
                 Text(text = " " + stringResource(R.string.and) + " ")
             }

@@ -91,7 +91,6 @@ fun Nom(contenu: String) {
     Text(
         text = contenu,
         style = MaterialTheme.typography.displayMedium,
-        fontSize = 12.em
     )
 }
 
